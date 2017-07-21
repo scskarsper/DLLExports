@@ -1,0 +1,10 @@
+/*.sdf
+/DLLExports/Debug/*.lastbuildstate
+/DLLExports/Debug/*.log
+/DLLExports/Debug/*.pch
+/DLLExports/Debug/*.tlog
+/DLLExports/Debug/*.obj
+/DLLExports/Debug/vc110.idb
+/ipch/dllexports-3b8495ba/*.ipch
+/Debug/*.ilk
+/Debug/*.pdb
