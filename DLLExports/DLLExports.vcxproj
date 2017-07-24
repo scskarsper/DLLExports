@@ -59,7 +59,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>copy /y "$(SolutionDir)\includes\lib.exe" "$(TargetDir)\lib.exe"</Command>
+      <Command>copy /y "$(SolutionDir)\includes\lib.exe" "$(TargetDir)\lib.exe"
+copy /y "$(SolutionDir)\includes\mspdb110.dll" "$(TargetDir)\mspdb110.dll"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,7 +80,8 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>copy /y "$(SolutionDir)\includes\lib.exe" "$(TargetDir)\lib.exe"</Command>
+      <Command>copy /y "$(SolutionDir)\includes\lib.exe" "$(TargetDir)\lib.exe"
+copy /y "$(SolutionDir)\includes\mspdb110.dll" "$(TargetDir)\mspdb110.dll"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
