@@ -17,6 +17,7 @@ typedef map<string,flines> fhrebs;
 
 BOOL ShowDebug=FALSE;
 BOOL DoClassFormat=TRUE;
+BOOL UseOrdinal=FALSE;
 
 void ClassHeaderFormater(const char* className,TCHAR* ClassTPath);
 bool GetDLLFileExports(TCHAR *szFileName, UINT *nNoOfExports, char **&pszFunctions, DWORD*& Addr)
@@ -135,6 +136,7 @@ void Usage()
    printf("\tDLLFile\tThe Dll file for decode into lib.\n");
    printf("OPTIONS:\n");
    printf("\t-d\tShow Debug Messages.\n");
+   printf("\t-C\tBuild Lib File By Function Ordinals(Default is NameSymbol).\n");
    printf("\t-O\tDo not format class header to normal header.\n");
    printf("The output file is dll's name with \".export.lib\" , \".export.def\" , \".export.h\" , \".export.csv\"\n");
 }
@@ -196,6 +198,10 @@ int _tmain(int argc, _TCHAR* argv[])
 		if(OA==L"-O")
 		{
 			DoClassFormat=FALSE;
+		}
+		if(OA==L"-C")
+		{
+			UseOrdinal=TRUE;
 		}
 	}
 
@@ -352,7 +358,13 @@ int _tmain(int argc, _TCHAR* argv[])
 			fprintf_s(hFile,"\tPVOID %s;\n",Symbol);
 			fprintf_s(cFile,"\t%s=GetProcAddress(handle, \"%s\");\n",Symbol,Symbol);
 		}
-	    fprintf_s(defFile,"\t%s @%d\n",Symbol,hint+1);
+	    if(UseOrdinal)
+		{
+			fprintf_s(defFile,"\t%s @%d\n",Symbol,hint+1);
+		}else
+		{
+			fprintf_s(defFile,"\t%s\n",Symbol);
+		}
 	}
 	if(haveNoClass)
 	{
